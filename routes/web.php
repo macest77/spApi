@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\MailingController::class, 'listing'])->name('home');
+Route::get('/send', [App\Http\Controllers\MailingController::class, 'send'])->name('send');
+Route::post('/send', [App\Http\Controllers\MailingController::class, 'sendpost'])->name('send');
+Route::get('/show/{id}', [App\Http\Controllers\MailingController::class, 'show'])->name('show');
+Route::get('/delete/{id}', [App\Http\Controllers\MailingController::class, 'delete'])->name('delete');
