@@ -8,6 +8,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
 
         <!-- Styles -->
         <style>
@@ -19,6 +21,7 @@
                 font-family: 'Nunito';
             }
         </style>
+        <script src="js/app.js"></script>
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
