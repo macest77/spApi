@@ -25,7 +25,7 @@
             {{ $error }}<br />
         @endforeach
     @else
-        @if($messages)
+        @if(!empty($messages))
         <script>
             var element = document.getElementById("errors");
             element.classList.remove("alert-danger");

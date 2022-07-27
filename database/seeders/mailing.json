@@ -1,0 +1,20 @@
+{
+    "1": {
+        "id": 1,
+        "title": "Pierwszy mail",
+        "recipient_email": "jan.kowalski@gmail.com",
+        "content": "Witamnpierwszy mail zostau0142 wysu0142anynPozdrawiam"
+    },
+    "2": {
+        "id": 2,
+        "title": "Drugi mail",
+        "recipient_email": "jan.kowalski2@gmail.com",
+        "content": "Witamnpierwszy mail zostau0142 wysu0142anynPozdrawiam"
+    },
+    "3": {
+        "id": 2,
+        "title": "Trzeci",
+        "recipient_email": "macest77@gmail.com",
+        "content": "jakau015b wiadomou015bu0107rnPozdrawiam"
+    }
+}

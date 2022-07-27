@@ -10,7 +10,10 @@ class MailingController extends Controller
 {
     public function listing()
     {
-        $mailing = (new MailingService)->getAllMailings();
+        //$mailing = (new MailingService)->getAllMailings();
+        $mailings = (new MailingService)->getSeederMails();
+        
+        return view('listing_view', ['mailings'=>$mailings]);
     }
 
     public function send()
@@ -25,9 +28,13 @@ class MailingController extends Controller
                             'message'=>'required'])) {
 
             $send_service = new SendService();
-            if ($send_service->send($request->input('form_email'), $request->input('form_title'), $request->input('message') ))
+            $form_email = $request->input('form_email');
+            $form_title = $request->input('form_title');
+            $message = $request->input('message');
+            if ($send_service->send($form_email, $form_title, $message )) {
                 $to_view = ['messages'=>$send_service->messages];
-            else {
+                (new MailingService)->storeInSeederFile($form_email, $form_title, $message);
+            } else {
                 $to_view = ['errors'=>$send_service->messages];
             }
             return view('send_view', $to_view);
