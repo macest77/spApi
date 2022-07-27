@@ -14,7 +14,7 @@ class SendService
     /***
      * data validation must be made before call this method
      */
-    public function send($email, $subject, $message)
+    public function send($email, $subject, $message) : bool
     {
         $this->clearMessages();
         $mail_data = array('email'=>$email,
@@ -28,9 +28,12 @@ class SendService
                     ['mail_data'=>$mail_data],
                     function($sending) use ($mail_data) {
                         $sending->to($mail_data['email'], $mail_data['name'])
-                            ->subject($mail_data['subject']);
+                            ->subject($mail_data['subject'])
+                            ->from('marcin@marcinstefanski.pl', 'Marcin');
                     });
             $this->messages[] = 'Wiadomość wysłano';
+
+            return true;
         } catch (Exception $e) {
             $this->messages[] = 'Wystąpił błąd podczas wysyłki';
             return false;
