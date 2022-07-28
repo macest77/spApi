@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/listing', [App\Http\Controllers\ApiController::class, 'listing']);
+Route::get('/show/{id}', [App\Http\Controllers\MailingController::class, 'show']);
+Route::delete('/delete/{id}/{hash}', [App\Http\Controllers\MailingController::class, 'delete']);
