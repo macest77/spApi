@@ -15,6 +15,16 @@ class MailingService
         return Mailing::all();
     }
 
+    public function getMailingById(int $id)
+    {
+        return Mailing::find($id);
+    }
+
+    public function insertMailing()
+    {
+
+    }
+
     /***
      * fetches mailing data from seeder file
      * 
@@ -37,15 +47,38 @@ class MailingService
     {
         if ($json = $this->getSeederMails() ) {
             $last_from_json = array_key_last($json);
-            $new_id = $last_from_json++;
+            $new_id = $last_from_json+1;
             $input_data = ['id'=>$new_id, 'title'=>$subject, 'recipient_email'=>$email,
                             'content'=>$message];
             array_push($json, $input_data);
             $new_json_string = json_encode($json, JSON_PRETTY_PRINT);
 
-            file_put_contents($this->_seeder_file, stripslashes($new_json_string));
+            file_put_contents($this->_seeder_file, $new_json_string);
 
             return true;
+        }
+
+        return false;
+    }
+
+    public function getSeederById(int $id)
+    {
+        if ($json = $this->getSeederMails() ) {
+            return $json[$id];
+        }
+
+        return false;
+    }
+
+    public function deleteSeederById(int $id)
+    {
+        if ($json = $this->getSeederMails() ) {
+            if (isset($json[$id]) ) {
+                unset($json[$id]);
+                $new_json_string = json_encode($json, JSON_PRETTY_PRINT);
+
+                file_put_contents($this->_seeder_file, $new_json_string);
+            }
         }
 
         return false;
