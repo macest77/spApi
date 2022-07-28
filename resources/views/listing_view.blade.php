@@ -9,29 +9,39 @@
 @endsection
 
 @section('content')
+<section id="mails_list" class="w-100">
     <script>
-        function redirAdd()
+        function redirAdd(href)
         {
-            window.location.href = "/send";
+            window.location.href = "/"+href;
+        }
+        function deleteRecord(id)
+        {
+            if (confirm('Czy chcesz usunąć rekord?')) {
+                window.location.href = "/delete/"+id;
+            }
         }
     </script>
-    <p>Lista wiadomości:</p>
-    <table>
-        <tr>
-            <th>Do kogo</th>
-            <th>Tytuł maila</th>
-            <th><button onclick="redirAdd()">Dodaj</button></th>
-        </tr>
-        @foreach($mailings as $m)
-        <tr>
-            <td>{{ $m['recipient_email'] }}</td>
-            <td>{{ $m['title'] }}</td>
-            <td>
-                <button>show</button>
-                <button>delete</button>
-            </td>
-        </tr>
-        @endforeach
-    </table>
-
+    <div class="w-50 m-auto">
+        <p>Lista wiadomości:</p>
+        <table>
+            <tr>
+                <th>Do kogo</th>
+                <th>Tytuł maila</th>
+                <th><button class="btn btn-primary" onclick="redirAdd('send')">Dodaj</button></th>
+            </tr>
+            @foreach($mailings as $m)
+            <tr>
+                <td>{{ $m['recipient_email'] }}</td>
+                <td>{{ $m['title'] }}</td>
+                <td>
+                    @php( $m_id = $m['id'] )
+                    <button class="btn btn-secondary" onclick='redirAdd("show/{{ $m_id }}")'>show</button>
+                    <button class="btn btn-danger" onclick='deleteRecord("{{ $m_id }}")'>delete</button>
+                </td>
+            </tr>
+            @endforeach
+        </table>
+    </div>
+</section>
 @endsection

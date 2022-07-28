@@ -13,12 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
-
+Route::get('/', [App\Http\Controllers\MailingController::class, 'listing'])->name('home');
 Route::get('/home', [App\Http\Controllers\MailingController::class, 'listing'])->name('home');
 Route::get('/send', [App\Http\Controllers\MailingController::class, 'send'])->name('send');
 Route::post('/send', [App\Http\Controllers\MailingController::class, 'sendpost'])->name('send');
