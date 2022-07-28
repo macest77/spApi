@@ -70,7 +70,7 @@ class MailingService
         return false;
     }
 
-    public function deleteSeederById(int $id)
+    public function deleteSeederById(int $id) : bool
     {
         if ($json = $this->getSeederMails() ) {
             if (isset($json[$id]) ) {
@@ -78,6 +78,8 @@ class MailingService
                 $new_json_string = json_encode($json, JSON_PRETTY_PRINT);
 
                 file_put_contents($this->_seeder_file, $new_json_string);
+
+                return true;
             }
         }
 
